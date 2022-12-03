@@ -32,7 +32,6 @@ with open('day3.txt', 'r', encoding="ascii") as f:
             v = v.intersection(set(line))
         if i % 3 == 2:
             score2 += priority(v.pop())
-
         i += 1
 
 print('First solution:', score1)
