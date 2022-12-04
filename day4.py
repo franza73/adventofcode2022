@@ -13,7 +13,7 @@ with open('day4.txt', 'r', encoding="ascii") as f:
         if not line:
             break
         line = line.strip()
-        a, b, c, d = map(int, re.split(r'[-,]', line))
+        a, b, c, d = map(int, re.split(r'\D', line))
         if (a >= c and b <= d) or (a <= c and b >= d):
             contains += 1
         if a <= c <= b or c <= a <= d:
