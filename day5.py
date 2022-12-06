@@ -7,19 +7,13 @@ import re
 from copy import deepcopy
 
 
-def decodeCrateMover9000(L, M):
-    for count, origin, dest in M:
-        for _ in range(count):
-            L[dest].append(L[origin].pop())
-    return ''.join(L[k][-1] for k in sorted(L.keys()))
-
-
-def decodeCrateMover9001(L, M):
+def decodeCrateMover(L, M, upgraded=False):
     for count, origin, dest in M:
         moves = []
         for _ in range(count):
             moves += [L[origin].pop()]
-        moves.reverse()
+        if upgraded:
+            moves.reverse()
         for m in moves:
             L[dest].append(m)
     return ''.join(L[k][-1] for k in sorted(L.keys()))
@@ -47,5 +41,5 @@ if __name__ == "__main__":
             else:
                 M.append(tuple(map(int, re.search(RE, line).groups())))
 
-    print('First solution:', decodeCrateMover9000(deepcopy(L), M))
-    print('Second solution:', decodeCrateMover9001(deepcopy(L), M))
+    print('First solution:', decodeCrateMover(deepcopy(L), M))
+    print('Second solution:', decodeCrateMover(deepcopy(L), M, True))
