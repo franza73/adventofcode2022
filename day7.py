@@ -21,8 +21,7 @@ def calculate_dir_sizes():
     _explore('')
     SIZE = 100000
     cnt = 0
-    for k in dir_sizes:
-        v = dir_sizes[k]
+    for v in dir_sizes.values():
         if v < SIZE:
             cnt += v
     return dir_sizes, cnt
