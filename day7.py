@@ -4,41 +4,41 @@ Advent of code day 7 - 2022
 '''
 import re
 from collections import defaultdict
-from math import inf
+import math
 
 
 def calculate_dir_sizes():
-    def _explore(dir):
-        sum = 0
-        for n in files[dir]:
-            if type(n) == int:
-                sum += n
+    def _explore(_dir):
+        _sum = 0
+        for name in files[_dir]:
+            if isinstance(name, int):
+                _sum += name
             else:
-                sum += _explore(dir + '/' + n)
-        dir_sizes[dir] = sum
-        return sum
-    dir_sizes = {}
+                _sum += _explore(_dir + '/' + name)
+        _dir_sizes[_dir] = _sum
+        return _sum
+    _dir_sizes = {}
     _explore('')
-    return dir_sizes
+    return _dir_sizes
 
 
-def total_size(dir_sizes):
-    SIZE = 100000
+def total_size(_dir_sizes):
+    max_size = 100000
     cnt = 0
-    for v in dir_sizes.values():
-        if v < SIZE:
-            cnt += v
+    for size in _dir_sizes.values():
+        if size < max_size:
+            cnt += size
     return cnt
 
 
-def get_size_to_delete(dir_sizes):
-    DISK_AVAILABLE = 70000000
-    MIN_UNUSED = 30000000
-    total_used = dir_sizes['']
-    unused_space = DISK_AVAILABLE - total_used
-    need_to_delete = MIN_UNUSED - unused_space
-    size_to_delete = inf
-    for size in dir_sizes.values():
+def get_size_to_delete(_dir_sizes):
+    disk_unavailable = 70000000
+    min_unused = 30000000
+    total_used = _dir_sizes['']
+    unused_space = disk_unavailable - total_used
+    need_to_delete = min_unused - unused_space
+    size_to_delete = math.inf
+    for size in _dir_sizes.values():
         if size_to_delete == -1 or need_to_delete <= size:
             size_to_delete = min(size_to_delete, size)
     return size_to_delete
