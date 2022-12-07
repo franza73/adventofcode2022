@@ -19,12 +19,16 @@ def calculate_dir_sizes():
         return sum
     dir_sizes = {}
     _explore('')
+    return dir_sizes
+
+
+def total_size(dir_sizes):
     SIZE = 100000
     cnt = 0
     for v in dir_sizes.values():
         if v < SIZE:
             cnt += v
-    return dir_sizes, cnt
+    return cnt
 
 
 def get_size_to_delete(dir_sizes):
@@ -66,6 +70,6 @@ if __name__ == "__main__":
                 else:
                     files[KEY] += [b]
 
-    dir_sizes, cnt0 = calculate_dir_sizes()
-    print('First solution:', cnt0)
+    dir_sizes = calculate_dir_sizes()
+    print('First solution:', total_size(dir_sizes))
     print('Second solution:', get_size_to_delete(dir_sizes))
