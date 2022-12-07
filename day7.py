@@ -20,12 +20,12 @@ def calculate_dir_sizes():
     dir_sizes = {}
     _explore('')
     SIZE = 100000
-    cnt0 = 0
+    cnt = 0
     for k in dir_sizes:
         v = dir_sizes[k]
         if v < SIZE:
-            cnt0 += v
-    return dir_sizes, cnt0
+            cnt += v
+    return dir_sizes, cnt
 
 
 def get_size_to_delete(dir_sizes):
