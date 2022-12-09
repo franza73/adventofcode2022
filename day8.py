@@ -2,7 +2,6 @@
 '''
 Advent of code day 8 - 2022
 '''
-from collections import defaultdict
 
 
 def read_matrix():
