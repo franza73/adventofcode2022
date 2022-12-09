@@ -22,7 +22,7 @@ def read_matrix():
 
 def count_visible_trees(matrix, size):
     "Count visible trees"
-    visible = defaultdict(int)
+    visible = set()
     for i in range(size):
         level_lr = -1
         level_rl = -1
@@ -30,22 +30,22 @@ def count_visible_trees(matrix, size):
         level_du = -1
         for j in range(size):
             if matrix[i][j] > level_lr:
-                visible[(i, j)] += 1
+                visible.add((i, j))
                 level_lr = matrix[i][j]
             if matrix[i][size-1-j] > level_rl:
-                visible[(i, size-1-j)] += 1
+                visible.add((i, size-1-j))
                 level_rl = matrix[i][size-1-j]
             if matrix[j][i] > level_ud:
-                visible[(j, i)] += 1
+                visible.add((j, i))
                 level_ud = matrix[j][i]
             if matrix[size-1-j][i] > level_du:
-                visible[(size-1-j, i)] += 1
+                visible.add((size-1-j, i))
                 level_du = matrix[size-1-j][i]
     return len(visible)
 
 
-def highest_scenic_score(matrix, size):
-    "Calculates the scenic score"
+def higher_scenic_score(matrix, size):
+    "Calculates the higher scenic score"
     best = 0
     for i in range(1, size-1):
         for j in range(1, size-1):
@@ -66,4 +66,4 @@ def highest_scenic_score(matrix, size):
 if __name__ == "__main__":
     M, N = read_matrix()
     print('First solution:', count_visible_trees(M, N))
-    print('Second solution:', highest_scenic_score(M, N))
+    print('Second solution:', higher_scenic_score(M, N))
