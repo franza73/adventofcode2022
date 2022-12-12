@@ -19,6 +19,14 @@ def read_commands():
 
 def decode(_commands):
     "Process the commands and decode the letters"
+    global res, time, val_x
+    def _update():
+        global res, time, val_x
+        res += '#' if time in set([val_x - 1, val_x, val_x + 1]) else '.'
+        time += 1
+        time %= 40
+        if time == 0:
+            res += '\n'
     time = 1
     val_x = 1
     res = '\n#'
@@ -27,17 +35,9 @@ def decode(_commands):
             pass
         else:
             val = int(cmd.split()[1])
-            res += '#' if time in set([val_x - 1, val_x, val_x + 1]) else '.'
-            time += 1
-            time %= 40
-            if time == 0:
-                res += '\n'
+            _update()
             val_x += val
-        res += '#' if time in set([val_x - 1, val_x, val_x + 1]) else '.'
-        time += 1
-        time %= 40
-        if time == 0:
-            res += '\n'
+        _update() 
     return res
 
 
