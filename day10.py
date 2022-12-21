@@ -22,7 +22,7 @@ def decode(_commands):
     time = 1
     val_x = 1
     res = '\n#'
-    for cmd in _commands:
+    for cmd in _commands[:-1]:
         if cmd == 'noop':
             pass
         else:
@@ -64,5 +64,5 @@ def calculate_strength(_commands):
 if __name__ == "__main__":
     CMDS = read_commands()
     print('First solution:', calculate_strength(CMDS))
-    print('Second solution:', decode(CMDS))
+    print('Second solution:', decode(CMDS).rstrip())
     # Visually: ECZUZALR
